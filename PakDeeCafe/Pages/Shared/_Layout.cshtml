@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PakDeeCafe</title>
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PakDeeCafe.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap">
+
+
+</head>
+<body>
+    <!--Menu Part-->
+    <div class="header">
+        <div class="navbar">              
+                <img src="~/img/pakdee-logo-1.png" alt="logo">
+                    <h0> Pakdee Cafe Admin Page </h0>
+                        <nav>
+                            <ul>
+                                <li> <a asp-area="" asp-page="/Index"> Home </a></li>
+                                <li> <a asp-area="" asp-page=""> Product </a>
+                                    <ul class="dropdown">
+                                        <li> <a asp-area="" asp-page="/DrinksUI"> Drinks </a></li>
+                                        <li> <a asp-area="" asp-page="/BakeryUI"> Bekery </a></li>
+                                    </ul>                    
+                                </li>
+                                <li> <a asp-area="" asp-page=""> Resource </a>
+                                    <ul class="dropdown">
+                                        <li> <a asp-area="" asp-page="/BranchUI"> Branch </a></li>
+                                        <li> <a asp-area="" asp-page="/EmployeesUI"> Employees </a></li>
+                                        <li> <a asp-area="" asp-page="/IngUI"> Ingredient </a></li>
+                                    </ul>
+                                <li> <a asp-area="" asp-page="/SupplierUI"> Supplier </a></li>
+                                <li> <a asp-area="" asp-page="/Privacy">Privacy</a></li>
+                            </ul>
+                
+                        </nav>
+                </img>
+        </div>
+    </div>
+         @RenderBody()
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+ 
+</html>

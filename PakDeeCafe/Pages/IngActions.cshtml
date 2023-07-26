@@ -1,0 +1,126 @@
+﻿@page
+@model PakDeeCafe.Pages.Index1Model
+@using MySql.Data.MySqlClient;
+@using System.Data;
+@using Newtonsoft.Json;
+@{
+}
+@{
+    Layout = null;
+    var action = Request.Query["action"];
+    var result = "ajax error";
+
+    MySqlConnection conn;
+    string server = "localhost";
+    string database = "PakDeeCafe";
+    string uid = "root";
+    string password = "12345678";
+    string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";SSL Mode=None;";
+    conn = new MySqlConnection(connectionString);
+    try
+    {
+        conn.Open();
+        result = "Connection Success";
+    }
+    catch (Exception ex)
+    {
+        result = "Unable To Connect To Database" + ex.Message;
+        return;
+    }
+    if (action=="insert")
+    {
+        var Ing_ID = Request.Query["IngID"];
+        var Ing_Name = Request.Query["IngName"];
+        var Ing_Price  = Request.Query["IngPrice"];
+        var Supplier_ID = Request.Query["SupplierID"];
+
+        string sqlCmd = "INSERT INTO ingredient VALUES(@p1, @p2, @p3, @p4)";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", Ing_ID);
+        cmd.Parameters.AddWithValue("@p2", Ing_Name);
+        cmd.Parameters.AddWithValue("@p3", Ing_Price);
+        cmd.Parameters.AddWithValue("@p4", Supplier_ID );
+        cmd.ExecuteNonQuery();
+
+        result = "เพิ่มข้อมูลสำเร็จ" + " "
+               + Ing_ID + " "
+               + Ing_Name + " "
+               + Ing_Price + " "
+               + Supplier_ID + " ";
+
+    }else if (action=="update")
+    {
+        var Ing_ID = Request.Query["IngID"];
+        var Ing_Name = Request.Query["IngName"];
+        var Ing_Price  = Request.Query["IngPrice"];
+        var Supplier_ID = Request.Query["SupplierID"];
+
+        string sqlCmd = "UPDATE ingredient "
+                        + " SET  IngName = @p2,"
+                        + "      IngPrice = @p3,"
+                        + "      SupplierID = @p4 "
+                        + " WHERE IngID = @p1";
+
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", Ing_ID);
+        cmd.Parameters.AddWithValue("@p2", Ing_Name);
+        cmd.Parameters.AddWithValue("@p3", Ing_Price);
+        cmd.Parameters.AddWithValue("@p4", Supplier_ID);
+
+        cmd.ExecuteNonQuery();
+
+        result = "ajax update";
+    }else if (action=="delete")
+    {
+        var Ing_ID = Request.Query["IngID"];
+        string sqlCmd = "DELETE FROM ingredient WHERE IngID = @cid";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@cid", Ing_ID);
+        cmd.ExecuteNonQuery();
+
+        result = "ajax delete";
+    }else if(action=="select")
+    {
+        var query = Request.Query["query"];
+        string sqlCmd = "SELECT ingredient.*, supplier.SupplierName FROM ingredient "
+                    + " INNER JOIN supplier "
+                    + " ON ingredient.SupplierID = supplier.SupplierID "
+                    + " WHERE IngID  LIKE @p1 "
+                    + " OR IngName  LIKE @p1 "
+                    + " OR IngPrice  LIKE @p1 "
+                    + " OR ingredient.SupplierID  LIKE @p1 ";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", "%" + query + "%");
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        result = json_string;
+    }else if (action =="fetch_single")
+    {
+        //ทำการลบข้อมูลไปยังฐานข้อมูล
+        var query = Request.Query["query"];
+        //System.Diagnostics.Debug.WriteLine("XXXXD" + query); //เป็นการ debug ตัวแปรฝั่ง server
+        string sqlCmd = "SELECT * FROM ingredient "
+                      + " WHERE IngID = @p1 ";
+
+	    MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+	    cmd.Parameters.AddWithValue("@p1", query );
+	    MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        result = json_string;
+
+    }
+    else
+    {
+        result = "unknown error";
+    }
+}
+@Html.Raw(result)

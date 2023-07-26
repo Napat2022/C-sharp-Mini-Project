@@ -1,0 +1,233 @@
+﻿@page
+@model PakDeeCafe.Pages.BakeryUIModel
+@{
+}
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+        $(document).ready(function () {
+            selectData("");
+            $("#insert").click(function() {  insertData(); });
+			$("#update").click(function() {  updateData(); });
+            $("#delete").click(function() { deleteData(); });
+            $("#search").click(function() { selectData(); });
+            $(document).on('click', '.edit', function () {
+				var id = $(this).attr("id");
+                fetchSingleData(id); 
+			 });
+            $(document).on('click', '.delete', function () {
+				var id = $(this).attr("id");
+				var result = confirm("Want to delete this ingredient id = " + id + " ?");
+                if (result)deleteData(id);
+			 });
+		});
+function insertData() {
+    $.ajax({
+        url: "./DrinksActions",
+        method: "GET",
+        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+        data: {
+            action: "insert",
+            DrkID: $("#Drk_ID").val(),
+            DrName: $("#Drk_Name").val(),
+            DrkPrice: $("#Drk_Price").val(),
+            DrkPic: $("#Drk_Pic").val(),
+        },
+        success: function(data) { 
+            alert(data);
+            selectData("");
+        },
+        error: function(errMsg) { alert("มีปัญหาในการร้องขอข้อมูลจาก server"); }
+    });
+}
+function updateData() {
+		$.ajax({
+        url: "./DrinksActions",
+        method: "GET",
+        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+        data: {
+            action: "update",
+            DrkID: $("#Drk_ID").val(),
+            DrName: $("#Drk_Name").val(),
+            DrkPrice: $("#Drk_Price").val(),
+            DrkPic: $("#Drk_Pic").val(),
+        },
+        success: function(data) { 
+            alert(data);
+            selectData("");
+        },
+        error: function(errMsg) { alert("มีปัญหาในการร้องขอข้อมูลจาก server"); }
+    });
+}
+function deleteData(IngID) {
+		$.ajax({
+			url: "./DrinksActions",
+		    method: "GET",
+			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+			data: {
+				action: "delete",
+			    DrkID: $("#Drk_ID").val()
+			},
+			success: function(data)  { 
+                alert(data);
+                selectData("");
+            },
+			error: function (errMsg) { alert("มีปัญหาในการร้องขอข้อมูลจาก server"); }
+		});
+	}
+function selectData() {
+		$.ajax({
+			url: "./DrinksActions",
+		    method: "GET",
+			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+			data: {
+				action: "select",
+			    query: $("#query").val()
+			},
+            dataType: "json",
+			success: function (data) { var table = CreateTableFromJSON(data); //แปลง json เป็น html table
+					var divContainer = $("#result");
+					divContainer.html(table); },
+			error: function (xhr, ajaxOptions, thrownError) { alert(thrownError); }
+		});
+	}
+function fetchSingleData(id) { 
+	    $.ajax({
+		    url: "./DrinksActions",
+			method: "GET",
+			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+            data: { action: "fetch_single" ,
+			   query : id
+			},
+			dataType: "json",
+            success: function (data) { 
+            if (data.lenth < 1) return;
+                $("#Drk_ID").val(data[0]["DrkID"]);
+				$("#Drk_Name").val(data[0]["DrkName"]);
+				$("#Drk_Price").val(data[0]["Price"]);
+                $("#Drk_Pic").val(data[0]["DrkPic"]);
+			},
+			error: function (xhr, ajaxOptions, thrownError) {alert(thrownError);}
+		});
+	}
+
+function CreateTableFromJSON(json_data) {
+        if (json_data.length == 0) return "";
+
+        var col = [];
+        for (var key in json_data[0]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement("table");
+
+        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+        var tr = table.insertRow(-1);                   // TABLE ROW.
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+        var edit_header = document.createElement("th");      // TABLE HEADER.
+        edit_header.innerHTML = "แก้ไขข้อมูล";
+        tr.appendChild(edit_header);
+
+        var delete_header = document.createElement("th");      // TABLE HEADER.
+        delete_header.innerHTML = "ลบข้อมูล";
+        tr.appendChild(delete_header);
+
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < json_data.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                var f = col.length-1;
+                if (j < f) {
+                    var cellData = json_data[i][col[j]];
+                    tabCell.innerHTML = cellData;
+                } else if (j = f) {
+                    var Picid = json_data[i][col[j]];
+                    tabCell.innerHTML = '<img src="/img/drinks/' + Picid + '.jpg" style="width:150px;height:150px;" ></img>';
+                }
+            }
+            var id = json_data[i][col[0]];
+            //เพิ่มปุ่ม edit
+            var tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = '<button type="button" name="edit" class="btn btn-primary btn-xs edit" id="' + id + '">Edit</button>';
+            //เพิ่มปุ่ม delete
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = '<button type="button" name="delete" class="btn btn-primary btn-xs delete" id="' + id + '">Delete</button>';
+        }
+        return table;
+    }
+	</script>
+</head>
+<boby>
+    <div class="raw">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+            <h12> Drink Form </h12>
+    </div>
+</boby>
+<style>
+    div.tablebg {
+        background: rgba(234, 234, 234, 0.5);
+        border-radius: 25px;
+        padding: 20px;
+    }
+</style>
+<form>
+    @Html.AntiForgeryToken()
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" type="text" name="query" id="query"></textarea>
+        <label for="floatingTextarea">Drinks Search Bar</label>
+        <br>
+        <input class="btn btn-primary " type="button" id="search" value="Search">
+    </div>
+    <br>
+    <div class="container-fluid col-md-12">
+            <div id="result" class="tablebg"></div>
+    </div>
+    <br>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" type="text" name="Drk_ID" id="Drk_ID"></textarea>
+        <label for="floatingTextarea">Drink ID</label>
+    </div>
+    <br>
+
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" type="text" name="Drk_Name" id="Drk_Name"></textarea>
+        <label for="floatingTextarea">Drink Name</label>
+    </div>
+    <br>
+
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" type="text" name="Drk_Price" id="Drk_Price"></textarea>
+        <label for="floatingTextarea">Drink Price</label>
+    </div>
+    <br>
+    
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" type="text" name="Drk_Pic" id="Drk_Pic"></textarea>
+        <label for="floatingTextarea">Drink Image</label>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <input class="btn btn-success" type="button" id="insert" value="Add" />
+        <input class="btn btn-secondary" type="button" id="update" value="Update" />
+        <input class="btn btn-danger" type="button" id="delete" value="Delete" />
+    </div>
+</form>

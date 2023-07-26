@@ -1,0 +1,94 @@
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\appsettings.Development.json
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\appsettings.json
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.staticwebassets.runtime.json
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.exe
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.deps.json
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.runtimeconfig.json
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.pdb
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\Google.Protobuf.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\MySql.Data.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\ZstdNet.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.csproj.AssemblyReference.cache
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.GeneratedMSBuildEditorConfig.editorconfig
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.AssemblyInfoInputs.cache
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.AssemblyInfo.cs
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.csproj.CoreCompileInputs.cache
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.MvcApplicationPartsAssemblyInfo.cache
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.RazorAssemblyInfo.cache
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.RazorAssemblyInfo.cs
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\staticwebassets.build.json
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\staticwebassets.development.json
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\scopedcss\bundle\PakDeeCafe.styles.css
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\scopedcss\projectbundle\PakDeeCafe.bundle.scp.css
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.csproj.CopyComplete
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\refint\PakDeeCafe.dll
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.pdb
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.genruntimeconfig.cache
+D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\ref\PakDeeCafe.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\refint\PakDeeCafe.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.pdb
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\appsettings.Development.json
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\appsettings.json
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.staticwebassets.runtime.json
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.exe
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.deps.json
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.runtimeconfig.json
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\PakDeeCafe.pdb
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\Google.Protobuf.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\MySql.Data.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\ZstdNet.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.csproj.AssemblyReference.cache
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.AssemblyInfoInputs.cache
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.AssemblyInfo.cs
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.csproj.CoreCompileInputs.cache
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.MvcApplicationPartsAssemblyInfo.cache
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.RazorAssemblyInfo.cache
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.RazorAssemblyInfo.cs
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\staticwebassets.build.json
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\staticwebassets.development.json
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\scopedcss\bundle\PakDeeCafe.styles.css
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\scopedcss\projectbundle\PakDeeCafe.bundle.scp.css
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.csproj.CopyComplete
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\PakDeeCafe.genruntimeconfig.cache
+D:\Work2022\PakDeeCafe\PakDeeCafe\obj\Debug\net6.0\ref\PakDeeCafe.dll

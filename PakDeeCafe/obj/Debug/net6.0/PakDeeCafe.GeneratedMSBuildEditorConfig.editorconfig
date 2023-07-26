@@ -1,0 +1,96 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = PakDeeCafe
+build_property.RootNamespace = PakDeeCafe
+build_property.ProjectDir = D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\uni\3-1\Business Programming\FinalProject\PakDeeCafe\PakDeeCafe
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/BakeryActions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmFrZXJ5QWN0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/BakeryUI.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmFrZXJ5VUkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/BranchActions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnJhbmNoQWN0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/BranchUI.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQnJhbmNoVUkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/DrinksActions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHJpbmtzQWN0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/DrinksUI.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHJpbmtzVUkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/EmployeesActions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVzQWN0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/EmployeesUI.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVzVUkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcaW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/indexactions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcaW5kZXhhY3Rpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/IngActions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5nQWN0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/IngUI.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5nVUkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/SupplierActions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VwcGxpZXJBY3Rpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/SupplierUI.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VwcGxpZXJVSS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/uni/3-1/Business Programming/FinalProject/PakDeeCafe/PakDeeCafe/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-oysrvih5cp

@@ -1,0 +1,57 @@
+﻿@page
+@model PakDeeCafe.Pages.indexactionsModel
+@using MySql.Data.MySqlClient;
+@using System.Data;
+@using Newtonsoft.Json;
+@{
+}
+@{
+    Layout = null;
+    var action = Request.Query["action"];
+    var result = "ajax error";
+
+    MySqlConnection conn;
+    string server = "localhost";
+    string database = "PakDeeCafe";
+    string uid = "root";
+    string password = "12345678";
+    string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";SSL Mode=None;";
+    conn = new MySqlConnection(connectionString);
+    try
+    {
+        conn.Open();
+        result = "Connection Success";
+    }
+    catch (Exception ex)
+    {
+        result = "Unable To Connect To Database" + ex.Message;
+        return;
+    }
+    if (action == "login")
+    {
+        var Emp_ID = Request.Query["EmpID"];
+        var Emp_Name = Request.Query["EmpName"];
+        var Emp_LastN  = Request.Query["EmpLastN"];
+        string sqlCmd = "SELECT EmpId,EmpName,EmpLastN FROM employees "
+                    + " WHERE EmpID  = @p1 "
+                    + " AND EmpName  = @p2 "
+                    + " AND EmpLastN  = @p3 ";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", Emp_ID );
+        cmd.Parameters.AddWithValue("@p2", Emp_Name );
+        cmd.Parameters.AddWithValue("@p3", Emp_LastN );
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        result = json_string;
+    }
+    else
+    {
+        result = "unknown error";
+    }
+}
+@Html.Raw(result)

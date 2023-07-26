@@ -1,0 +1,122 @@
+﻿@page
+@model PakDeeCafe.Pages.DrinksActionsModel
+@using MySql.Data.MySqlClient;
+@using System.Data;
+@using Newtonsoft.Json;
+@{
+}
+@{
+    Layout = null;
+    var action = Request.Query["action"];
+    var result = "ajax error";
+
+    MySqlConnection conn;
+    string server = "localhost";
+    string database = "PakDeeCafe";
+    string uid = "root";
+    string password = "12345678";
+    string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";SSL Mode=None;";
+    conn = new MySqlConnection(connectionString);
+    try
+    {
+        conn.Open();
+        result = "Connection Success";
+    }
+    catch (Exception ex)
+    {
+        result = "Unable To Connect To Database" + ex.Message;
+        return;
+    }
+    if (action=="insert")
+    {
+        var Drk_ID = Request.Query["DrkID"];
+        var Drk_Name = Request.Query["DrName"];
+        var Drk_Price  = Request.Query["DrkPrice"];
+        var Drk_Pic  = Request.Query["DrkPic"];
+
+        string sqlCmd = "INSERT INTO drinks VALUES(@p1, @p2, @p3, @p4)";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", Drk_ID);
+        cmd.Parameters.AddWithValue("@p2", Drk_Name);
+        cmd.Parameters.AddWithValue("@p3", Drk_Price);
+        cmd.Parameters.AddWithValue("@p4", Drk_Pic);
+        cmd.ExecuteNonQuery();
+
+        result = "เพิ่มข้อมูลสำเร็จ" + " "
+               + Drk_ID + " "
+               + Drk_Name + " "
+               + Drk_Price + " ";
+
+    }else if (action=="update")
+    {
+        var Drk_ID = Request.Query["DrkID"];
+        var Drk_Name = Request.Query["DrName"];
+        var Drk_Price  = Request.Query["DrkPrice"];
+        var Drk_Pic  = Request.Query["DrkPic"];
+
+        string sqlCmd = "UPDATE drinks "
+                        + " SET  DrkName = @p2,"
+                        + "      Price = @p3, "
+                        + "     DrkPic = @p4 "
+                        + " WHERE DrkID = @p1";
+
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", Drk_ID);
+        cmd.Parameters.AddWithValue("@p2", Drk_Name);
+        cmd.Parameters.AddWithValue("@p3", Drk_Price);
+        cmd.Parameters.AddWithValue("@p4", Drk_Pic);
+
+        cmd.ExecuteNonQuery();
+
+        result = "ajax update";
+    }else if (action=="delete")
+    {
+        var Drk_ID = Request.Query["DrkID"];
+        string sqlCmd = "DELETE FROM drinks WHERE DrkID = @cid";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@cid", Drk_ID);
+        cmd.ExecuteNonQuery();
+
+        result = "ajax delete";
+    }else if(action=="select")
+    {
+        var query = Request.Query["query"];
+        string sqlCmd = "SELECT * FROM drinks "
+                    + " WHERE DrkID  LIKE @p1 "
+                    + " OR DrkName  LIKE @p1 "
+                    + " OR Price  LIKE @p1 ";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", "%" + query + "%");
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        result = json_string;
+    }else if (action =="fetch_single")
+    {
+        //ทำการลบข้อมูลไปยังฐานข้อมูล
+        var query = Request.Query["query"];
+        //System.Diagnostics.Debug.WriteLine("XXXXD" + query); //เป็นการ debug ตัวแปรฝั่ง server
+        string sqlCmd = "SELECT * FROM drinks "
+                      + " WHERE DrkID = @p1 ";
+
+	    MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+	    cmd.Parameters.AddWithValue("@p1", query );
+	    MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        result = json_string;
+
+    }
+    else
+    {
+        result = "unknown error";
+    }
+}
+@Html.Raw(result)

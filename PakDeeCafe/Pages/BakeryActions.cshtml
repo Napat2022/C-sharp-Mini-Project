@@ -1,0 +1,119 @@
+﻿@page
+@model PakDeeCafe.Pages.BakeryActionsModel
+@using MySql.Data.MySqlClient;
+@using System.Data;
+@using Newtonsoft.Json;
+@{
+}
+@{
+    Layout = null;
+    var action = Request.Query["action"];
+    var result = "ajax error";
+
+    MySqlConnection conn;
+    string server = "localhost";
+    string database = "PakDeeCafe";
+    string uid = "root";
+    string password = "12345678";
+    string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";SSL Mode=None;";
+    conn = new MySqlConnection(connectionString);
+    try
+    {
+        conn.Open();
+        result = "Connection Success";
+    }
+    catch (Exception ex)
+    {
+        result = "Unable To Connect To Database" + ex.Message;
+        return;
+    }
+    if (action=="insert")
+    {
+        var Bak_ID = Request.Query["BakID"];
+        var Bak_Name = Request.Query["BakName"];
+        var Price  = Request.Query["Price"];
+        var Bak_Pic  = Request.Query["BakPic"];
+
+        string sqlCmd = "INSERT INTO bakery VALUES(@p1, @p2, @p3, @p4)";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", Bak_ID);
+        cmd.Parameters.AddWithValue("@p2", Bak_Name);
+        cmd.Parameters.AddWithValue("@p3", Price);
+        cmd.Parameters.AddWithValue("@p4", Bak_Pic);
+        cmd.ExecuteNonQuery();
+
+        result = "เพิ่มข้อมูลสำเร็จ" + " "
+               + Bak_ID + " "
+               + Bak_Name + " "
+               + Price + " ";
+
+    }else if (action=="update")
+    {
+        var Bak_ID = Request.Query["BakID"];
+        var Bak_Name = Request.Query["BakName"];
+        var Price  = Request.Query["Price"];
+        var Bak_Pic  = Request.Query["BakPic"];
+
+        string sqlCmd = "UPDATE bakery "
+                        + " SET  BakName = @p2,"
+                        + "      Price = @p3, "
+                        + "      BakPic = @p4"    
+                        + " WHERE BakID = @p1";
+
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", Bak_ID);
+        cmd.Parameters.AddWithValue("@p2", Bak_Name);
+        cmd.Parameters.AddWithValue("@p3", Price);
+        cmd.Parameters.AddWithValue("@p4", Bak_Pic);
+        cmd.ExecuteNonQuery();
+
+        result = "อัปเดตสำเร็จ";
+    }else if (action=="delete")
+    {
+        var BakID = Request.Query["BakID"];
+        string sqlCmd = "DELETE FROM bakery WHERE BakID = @cid";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@cid", BakID);
+        cmd.ExecuteNonQuery();
+
+        result = "ลบสำเร็จ";
+    }else if(action=="select")
+    {
+        var query = Request.Query["query"];
+        string sqlCmd = "SELECT * FROM bakery "
+                    + " WHERE BakID  LIKE @p1 "
+                    + " OR BakName  LIKE @p1 ";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", "%" + query + "%");
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        result = json_string;
+    }else if (action =="fetch_single")
+    {
+        //ทำการลบข้อมูลไปยังฐานข้อมูล
+        var query = Request.Query["query"];
+        //System.Diagnostics.Debug.WriteLine("XXXXD" + query); //เป็นการ debug ตัวแปรฝั่ง server
+        string sqlCmd = "SELECT * FROM bakery "
+                      + " WHERE BakID = @p1 ";
+
+	    MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+	    cmd.Parameters.AddWithValue("@p1", query );
+	    MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        result = json_string;
+    }
+    else
+    {
+        result = "unknown error";
+    }
+}
+@Html.Raw(result)

@@ -1,0 +1,108 @@
+﻿@page
+@model PakDeeCafe.Pages.BranchActionsModel
+@using MySql.Data.MySqlClient;
+@using System.Data;
+@using Newtonsoft.Json;
+@{
+}
+@{
+    Layout = null;
+    var action = Request.Query["action"];
+    var result = "ajax error";
+
+    MySqlConnection conn;
+    string server = "localhost";
+    string database = "PakDeeCafe";
+    string uid = "root";
+    string password = "12345678";
+    string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";SSL Mode=None;";
+    conn = new MySqlConnection(connectionString);
+    try
+    {
+        conn.Open();
+        result = "Connection Success";
+    }
+    catch (Exception ex)
+    {
+        result = "Unable To Connect To Database" + ex.Message;
+        return;
+    }
+    if (action=="insert")
+    {
+        var Branch_ID = Request.Query["BranchID"];
+        var Branch_Name = Request.Query["BranchName"];
+
+        string sqlCmd = "INSERT INTO branch VALUES(@p1, @p2)";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", Branch_ID);
+        cmd.Parameters.AddWithValue("@p2", Branch_Name);
+        cmd.ExecuteNonQuery();
+
+        result = "เพิ่มข้อมูลสำเร็จ" + " "
+               + Branch_ID + " "
+               + Branch_Name + " ";
+
+    }else if (action=="update")
+    {
+        var Branch_ID = Request.Query["BranchID"];
+        var Branch_Name = Request.Query["BranchName"];
+
+        string sqlCmd = "UPDATE branch "
+                        + " SET  BrnName = @p2 "
+                        + " WHERE BrnID = @p1";
+
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", Branch_ID);
+        cmd.Parameters.AddWithValue("@p2", Branch_Name);
+
+        cmd.ExecuteNonQuery();
+
+        result = "ajax update";
+    }else if (action=="delete")
+    {
+        var Branch_ID = Request.Query["BranchID"];
+        string sqlCmd = "DELETE FROM branch WHERE BrnID = @cid";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@cid", Branch_ID);
+        cmd.ExecuteNonQuery();
+
+        result = "ajax delete";
+    }else if(action=="select")
+    {
+        var query = Request.Query["query"];
+        string sqlCmd = "SELECT * FROM branch "
+                    + " WHERE BrnID  LIKE @p1 "
+                    + " OR BrnName  LIKE @p1 ";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", "%" + query + "%");
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        result = json_string;
+    }else if (action =="fetch_single")
+    {
+        var query = Request.Query["query"];
+        string sqlCmd = "SELECT * FROM branch "
+                      + " WHERE BrnID = @p1 ";
+
+	    MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+	    cmd.Parameters.AddWithValue("@p1", query );
+	    MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        result = json_string;
+
+    }
+    else
+    {
+        result = "unknown error";
+    }
+}
+@Html.Raw(result)

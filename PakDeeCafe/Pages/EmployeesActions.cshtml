@@ -1,0 +1,152 @@
+﻿@page
+@model PakDeeCafe.Pages.EmployeesActionsModel
+@using MySql.Data.MySqlClient;
+@using System.Data;
+@using Newtonsoft.Json;
+@{
+}
+@{
+    Layout = null;
+    var action = Request.Query["action"];
+    var result = "ajax error";
+
+    MySqlConnection conn;
+    string server = "localhost";
+    string database = "PakDeeCafe";
+    string uid = "root";
+    string password = "12345678";
+    string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";SSL Mode=None;";
+    conn = new MySqlConnection(connectionString);
+    try
+    {
+        conn.Open();
+        result = "Connection Success";
+    }
+    catch (Exception ex)
+    {
+        result = "Unable To Connect To Database" + ex.Message;
+        return;
+    }
+    if (action=="insert")
+    {
+        var Emp_ID = Request.Query["EmpID"];
+        var Emp_Name = Request.Query["EmpName"];
+        var Emp_LastN  = Request.Query["EmpLastN"];
+        var Emp_Tel = Request.Query["EmpTel"];
+        var Emp_Position = Request.Query["EmpPosition"];
+        var Emp_Salary  = Request.Query["EmpSalary"];
+        var Brn_ID = Request.Query["BrnID"];
+        var Emp_Pic = Request.Query["EmpPic"];
+
+        string sqlCmd = "INSERT INTO employees VALUES(@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", Emp_ID);
+        cmd.Parameters.AddWithValue("@p2", Emp_Name);
+        cmd.Parameters.AddWithValue("@p3", Emp_LastN);
+        cmd.Parameters.AddWithValue("@p4", Emp_Tel );
+        cmd.Parameters.AddWithValue("@p5", Emp_Position);
+        cmd.Parameters.AddWithValue("@p6", Emp_Salary);
+        cmd.Parameters.AddWithValue("@p7", Brn_ID );
+        cmd.Parameters.AddWithValue("@p8", Emp_Pic );
+        cmd.ExecuteNonQuery();
+
+        result = "เพิ่มข้อมูลสำเร็จ" + " "
+               + Emp_ID + " "
+               + Emp_Name + " "
+               + Emp_LastN + " "
+               + Emp_Tel + " "
+               + Emp_Position + " "
+               + Emp_Salary + " "
+               + Brn_ID + " "
+               + Emp_Pic + " ";
+
+    }else if (action=="update")
+    {
+        var Emp_ID = Request.Query["EmpID"];
+        var Emp_Name = Request.Query["EmpName"];
+        var Emp_LastN  = Request.Query["EmpLastN"];
+        var Emp_Tel = Request.Query["EmpTel"];
+        var Emp_Position = Request.Query["EmpPosition"];
+        var Emp_Salary  = Request.Query["EmpSalary"];
+        var Brn_ID = Request.Query["BrnID"];
+        var Emp_Pic = Request.Query["EmpPic"];
+
+        string sqlCmd = "UPDATE employees "
+                        + " SET  EmpName = @p2,"
+                        + "      EmpLastN = @p3,"
+                        + "      EmpTel = @p4,"
+                        + "      EmpPosition = @p5,"
+                        + "      EmpSalary = @p6,"
+                        + "      BrnID = @p7, "
+                        + "      EmpPic = @p8 "
+                        + " WHERE EmpID = @p1";
+
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", Emp_ID);
+        cmd.Parameters.AddWithValue("@p2", Emp_Name);
+        cmd.Parameters.AddWithValue("@p3", Emp_LastN);
+        cmd.Parameters.AddWithValue("@p4", Emp_Tel );
+        cmd.Parameters.AddWithValue("@p5", Emp_Position);
+        cmd.Parameters.AddWithValue("@p6", Emp_Salary);
+        cmd.Parameters.AddWithValue("@p7", Brn_ID );
+        cmd.Parameters.AddWithValue("@p8", Emp_Pic );
+        cmd.ExecuteNonQuery();
+
+        result = "Update Complete";
+    }else if (action=="delete")
+    {
+        var Emp_ID = Request.Query["EmpID"];
+        string sqlCmd = "DELETE FROM employees WHERE EmpID = @cid";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@cid", Emp_ID);
+        cmd.ExecuteNonQuery();
+
+        result = "Delete Complete";
+    }else if(action=="select")
+    {
+        var query = Request.Query["query"];
+        string sqlCmd = "SELECT employees.*, branch.BrnName FROM employees "
+                    + " INNER JOIN branch "
+                    + " ON employees.BrnID = branch.BrnID "
+                    + " WHERE EmpID  LIKE @p1 "
+                    + " OR EmpName  LIKE @p1 "
+                    + " OR EmpLastN  LIKE @p1 "
+                    + " OR EmpTel LIKE @p1 "
+                    + " OR EmpPosition  LIKE @p1 "
+                    + " OR EmpSalary  LIKE @p1 "
+                    + " OR branch.BrnID LIKE @p1 ";
+        MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+        cmd.Parameters.AddWithValue("@p1", "%" + query + "%");
+        MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        result = json_string;
+    }else if (action =="fetch_single")
+    {
+        //ทำการลบข้อมูลไปยังฐานข้อมูล
+        var query = Request.Query["query"];
+        //System.Diagnostics.Debug.WriteLine("XXXXD" + query); //เป็นการ debug ตัวแปรฝั่ง server
+        string sqlCmd = "SELECT * FROM employees "
+                      + " WHERE EmpID = @p1 ";
+
+	    MySqlCommand cmd = new MySqlCommand(sqlCmd, conn);
+	    cmd.Parameters.AddWithValue("@p1", query );
+	    MySqlDataReader reader = cmd.ExecuteReader();
+
+        DataTable dt = new DataTable();
+        dt.Load(reader);
+
+        string json_string = JsonConvert.SerializeObject(dt);
+        result = json_string;
+
+    }
+    else
+    {
+        result = "unknown error";
+    }
+}
+@Html.Raw(result)

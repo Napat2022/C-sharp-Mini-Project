@@ -1,0 +1,213 @@
+﻿@page
+@model PakDeeCafe.Pages.BranchUIModel
+@{
+}
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+        $(document).ready(function () {
+            selectData("");
+            $("#insert").click(function() {  insertData(); });
+			$("#update").click(function() {  updateData(); });
+            $("#delete").click(function() { deleteData(); });
+            $("#search").click(function() { selectData(); });
+            $(document).on('click', '.edit', function () {
+				var id = $(this).attr("id");
+                fetchSingleData(id); 
+			 });
+            $(document).on('click', '.delete', function () {
+				var id = $(this).attr("id");
+				var result = confirm("Want to delete this supplier id = " + id + " ?");
+                if (result)deleteData(id);
+			 });
+		});
+function insertData() {
+    $.ajax({
+        url: "./BranchActions",
+        method: "GET",
+        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+        data: {
+            action: "insert",
+            BranchID: $("#Branch_ID").val(),
+            BranchName: $("#Branch_Name").val(),
+        },
+        success: function(data) { 
+            alert(data);
+            selectData("");
+        },
+        error: function(errMsg) { alert("มีปัญหาในการร้องขอข้อมูลจาก server"); }
+    });
+}
+function updateData() {
+		$.ajax({
+        url: "./BranchActions",
+        method: "GET",
+        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+        data: {
+            action: "update",
+            BranchID: $("#Branch_ID").val(),
+            BranchName: $("#Branch_Name").val(),
+        },
+        success: function(data) { 
+            alert(data);
+            selectData("");
+        },
+        error: function(errMsg) { alert("มีปัญหาในการร้องขอข้อมูลจาก server"); }
+    });
+}
+function deleteData(IngID) {
+		$.ajax({
+			url: "./BranchActions",
+		    method: "GET",
+			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+			data: {
+				action: "delete",
+			    BranchID: $("#Branch_ID").val()
+			},
+			success: function(data)  { 
+                alert(data);
+                selectData("");
+            },
+			error: function (errMsg) { alert("มีปัญหาในการร้องขอข้อมูลจาก server"); }
+		});
+	}
+function selectData() {
+		$.ajax({
+			url: "./BranchActions",
+		    method: "GET",
+			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+			data: {
+				action: "select",
+			    query: $("#query").val()
+			},
+            dataType: "json",
+			success: function (data) { var table = CreateTableFromJSON(data); //แปลง json เป็น html table
+					var divContainer = $("#result");
+					divContainer.html(table); },
+			error: function (xhr, ajaxOptions, thrownError) { alert(thrownError); }
+		});
+	}
+function fetchSingleData(id) { 
+	    $.ajax({
+		    url: "./BranchActions",
+			method: "GET",
+			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+            data: { action: "fetch_single" ,
+			   query : id
+			},
+			dataType: "json",
+            success: function (data) { 
+            if (data.lenth < 1) return;
+                $("#Branch_ID").val(data[0]["BrnID"]);
+                $("#Branch_Name").val(data[0]["BrnName"]);
+			},
+			error: function (xhr, ajaxOptions, thrownError) {alert(thrownError);}
+		});
+	}
+
+function CreateTableFromJSON(json_data) {
+        if (json_data.length == 0) return "";
+
+        var col = [];
+        for (var key in json_data[0]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement("table");
+
+        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+        var tr = table.insertRow(-1);                   // TABLE ROW.
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+        var edit_header = document.createElement("th");      // TABLE HEADER.
+        edit_header.innerHTML = "แก้ไขข้อมูล";
+        tr.appendChild(edit_header);
+
+        var delete_header = document.createElement("th");      // TABLE HEADER.
+        delete_header.innerHTML = "ลบข้อมูล";
+        tr.appendChild(delete_header);
+
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < json_data.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = json_data[i][col[j]];
+            }
+
+            var id = json_data[i][col[0]];
+            //เพิ่มปุ่ม edit
+            var tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = '<button type="button" name="edit" class="btn btn-primary btn-xs edit" id="' + id + '">Edit</button>';
+            //เพิ่มปุ่ม delete
+            tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = '<button type="button" name="delete" class="btn btn-primary btn-xs delete" id="' + id + '">Delete</button>';
+        }
+        return table;
+    }
+	</script>
+</head>
+<boby>
+    <div class="raw">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <h13> Branch Form </h13>
+    </div>
+</boby>
+<style>
+    div.tablebg {
+        background: rgba(234, 234, 234, 0.5);
+        background: rgba(234, 234, 234, 0.5);
+        border-radius: 25px;
+        padding: 20px;
+    }
+</style>
+<form>
+    @Html.AntiForgeryToken()
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" type="text" name="query" id="query"></textarea>
+        <label for="floatingTextarea">Branch Search Bar</label>
+        <br>
+        <input class="btn btn-primary " type="button" id="search" value="Search">
+    </div>
+    <br />
+
+    <div class="container-fluid col-md-12">
+        <div class="tablebg">
+            <div id="result"></div>
+        </div>
+    </div>
+    
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" type="text" name="Branch_ID" id="Branch_ID"></textarea>
+        <label for="floatingTextarea">Branch ID</label>
+    </div>
+    <br>
+
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" type="text" name="Branch_Name" id="Branch_Name"></textarea>
+        <label for="floatingTextarea">Branch Name</label>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <input class="btn btn-success" type="button" id="insert" value="Add" />
+        <input class="btn btn-secondary" type="button" id="update" value="Update" />
+        <input class="btn btn-danger" type="button" id="delete" value="Delete" />
+    </div>
+</form>
