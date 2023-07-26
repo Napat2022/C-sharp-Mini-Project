@@ -1,2 +1,3 @@
-# Mini-Project
-This repository include my projects that have been done in courses or self-study.
+# JAVA-Mini-Project
+This repository has my JAVA projects that have been done in Business Programming subject.
+created by Napat Parkdee
